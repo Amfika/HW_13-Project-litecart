@@ -19,8 +19,8 @@ public class WebDriverContainer {
         Browser browser = Browser.getEnumByLabel(System.getProperty("browser", Browser.CHROME.getBrowserName()));
 
         switch (browser){
-            case CHROME:driver = new ChromeDriver();
-            case EDGE:driver = new EdgeDriver();
+            case CHROME->driver = new ChromeDriver();
+            case EDGE->driver = new EdgeDriver();
         }
     }
 

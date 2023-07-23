@@ -12,15 +12,15 @@ import static page_object.WebDriverContainer.getDriver;
 
 public class LoginPage extends PageBase {
     //локаторы
-    private By emailInput = By.name("email");
-    private By passwordInput = By.name("password");
-    private By loginButton = By.name("login");
-    private By rememberMe = By.name("remember_me");
-    private By errorMessage = By.cssSelector("div[class='notice errors']");
-    private By validMessage = By.cssSelector("div[class='notice success']");
-    private By validMessageForRememberPass = By.cssSelector("div[class='notice success']");
-    private By logout = By.xpath("//div[@class='content']/ul[@class='list-vertical']/li/a[@href='https://litecart.stqa.ru/en/logout']");
-    private By lostPasswordButton = By.name("lost_password");
+    private By emailInput = Locators.getLocator("LoginPage.emailInput");
+    private By passwordInput = Locators.getLocator("LoginPage.passwordInput");
+    private By loginButton = Locators.getLocator("LoginPage.loginButton");
+    private By rememberMe = Locators.getLocator("LoginPage.rememberMe");
+    private By errorMessage = Locators.getLocator("LoginPage.errorMessage");
+    private By validMessage = Locators.getLocator("LoginPage.validMessage");
+    private By validMessageForRememberPass = Locators.getLocator("LoginPage.validMessageForRememberPass");
+    private By logout = Locators.getLocator("LoginPage.logout");
+    private By lostPasswordButton = Locators.getLocator("LoginPage.lostPasswordButton");
 
 
     public static void LoginPage(){
