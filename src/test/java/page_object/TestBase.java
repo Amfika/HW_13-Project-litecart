@@ -1,7 +1,10 @@
 package page_object;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import java.util.concurrent.TimeUnit;
 
 import static page_object.WebDriverContainer.getDriver;
 import static page_object.WebDriverContainer.quitDriver;

@@ -7,6 +7,7 @@ import page_object.PageBase;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
+import static java.time.Duration.*;
 import static page_object.WebDriverContainer.getDriver;
 
 
@@ -45,12 +46,12 @@ public class LoginPage extends PageBase {
     }
     //метод, который отлавливает errorMessage
     public String getErrorMessage(){
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.of(5, ChronoUnit.SECONDS));
+        WebDriverWait wait = new WebDriverWait(getDriver(),5);
         String invalMess = wait.until(ExpectedConditions.presenceOfElementLocated(errorMessage)).getText();
         return invalMess;
     }
     public String getValidLoginMess(){
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.of(5,ChronoUnit.SECONDS));
+        WebDriverWait wait = new WebDriverWait(getDriver(), 5);
         String valMess = wait.until(ExpectedConditions.presenceOfElementLocated(validMessage)).getText();
         return valMess;
     }
@@ -59,7 +60,7 @@ public class LoginPage extends PageBase {
         return logoutElem;
     }
     public String rememberPasswordText(){
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.of(5,ChronoUnit.SECONDS));
+        WebDriverWait wait = new WebDriverWait(getDriver(), 5);
         String rememberMess = wait.until(ExpectedConditions.presenceOfElementLocated(validMessageForRememberPass)).getText();
         return rememberMess;
     }
