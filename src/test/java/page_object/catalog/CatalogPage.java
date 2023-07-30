@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import page_object.PageBase;
 
+import static com.codeborne.selenide.Selenide.$;
 import static page_object.WebDriverContainer.getDriver;
 
 public class CatalogPage extends PageBase {
@@ -25,48 +26,47 @@ public class CatalogPage extends PageBase {
     private By cart = By.xpath("//div[@id='cart']/a[@class='content']");
 
     public CatalogPage(){
-        getDriver();
     }
 
     public void goToRuberDucksPage(){
-        getDriver().findElement(ruberDucksMenu).click();
+        $(ruberDucksMenu).click();
     }
 
     public String findHeader(){
-        String textHeader = getDriver().findElement(By.xpath("//*[@id='box-category']/*[@class='title']")).getText();
+        String textHeader = $(By.xpath("//*[@id='box-category']/*[@class='title']")).getText();
         return textHeader;
     }
 
     public void selectDuck(){
-        getDriver().findElement(yellowDuckTitle).click();
+        $(yellowDuckTitle).click();
     }
 
     public void selectSizeDuckAndAddCart() throws InterruptedException {
-        Select select = new Select(getDriver().findElement(dropDown));
+        Select select = new Select($(dropDown));
         select.selectByValue("Large");
-        getDriver().findElement(addCartButton).click();
+        $(addCartButton).click();
     }
 
     public void goToCart() throws InterruptedException {
         Thread.sleep(5000);
-        getDriver().findElement(cart).click();
+        $(cart).click();
     }
 
     public void byDuck() throws InterruptedException {
-        getDriver().findElement(firstName).sendKeys("aa");
-        getDriver().findElement(lastName).sendKeys("aa");
-        getDriver().findElement(address).sendKeys("aa");
-        getDriver().findElement(postcode).sendKeys("220121");
-        getDriver().findElement(city).sendKeys("Minsk");
-        getDriver().findElement(emailInput).sendKeys("asanastasia1@gmail.com");
-        getDriver().findElement(phone).sendKeys("+375291111111");
-        getDriver().findElement(setAddressButton).click();
+        $(firstName).sendKeys("aa");
+        $(lastName).sendKeys("aa");
+        $(address).sendKeys("aa");
+        $(postcode).sendKeys("220121");
+        $(city).sendKeys("Minsk");
+        $(emailInput).sendKeys("asanastasia1@gmail.com");
+        $(phone).sendKeys("+375291111111");
+        $(setAddressButton).click();
         Thread.sleep(5000);
-        getDriver().findElement(confirmButton).click();
+        $(confirmButton).click();
     }
 
     public String orderMessage(){
-        String orderMess = getDriver().findElement(boxOrder).getText();
+        String orderMess = $(boxOrder).getText();
         return orderMess;
     }
 }

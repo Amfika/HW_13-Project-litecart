@@ -3,6 +3,7 @@ package page_object.cart;
 import org.openqa.selenium.By;
 import page_object.PageBase;
 
+import static com.codeborne.selenide.Selenide.$;
 import static page_object.WebDriverContainer.getDriver;
 
 public class CartPage extends PageBase {
@@ -29,38 +30,37 @@ public class CartPage extends PageBase {
     private By redDuckNameFromCart = By.xpath("//div[@style='display: inline-block;']//a[@href='https://litecart.stqa.ru/en/rubber-ducks-c-1/red-duck-p-3']/*");
 
     public CartPage(){
-        getDriver();
     }
 
     public void openCart(){
-        getDriver().findElement(cart).click();
+        $(cart).click();
     }
 
     public String emptyCartGetMess(){
-        String message = getDriver().findElement(textFromEmptyCart).getText();
+        String message = $(textFromEmptyCart).getText();
         return message;
     }
 
     public void clickBackButton(){
-        getDriver().findElement(backButton).click();
+        $(backButton).click();
     }
 
     public String findMainPagePicture(){
-        String picture = getDriver().findElement(mainPagePicture).getAttribute("src");
+        String picture = $(mainPagePicture).getAttribute("src");
         return picture;
     }
 
     public void chooseDuck(){
-        getDriver().findElement(redDuck).click();
-        getDriver().findElement(addCartButton).click();
+        $(redDuck).click();
+        $(addCartButton).click();
     }
 
     public String getDuckName(){
-        String mess = getDriver().findElement(redDuckName).getText();
+        String mess = $(redDuckName).getText();
         return mess;
     }
     public String getDuckNameFromCart(){
-        String mess2 = getDriver().findElement(redDuckNameFromCart).getText();
+        String mess2 = $(redDuckNameFromCart).getText();
         return mess2;
     }
 }

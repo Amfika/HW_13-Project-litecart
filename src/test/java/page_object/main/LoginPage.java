@@ -1,5 +1,8 @@
 package page_object.main;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page_object.PageBase;
@@ -9,6 +12,7 @@ import java.time.temporal.ChronoUnit;
 
 import static java.time.Duration.*;
 import static page_object.WebDriverContainer.getDriver;
+import static com.codeborne.selenide.Selenide.$;
 
 
 public class LoginPage extends PageBase {
@@ -25,43 +29,41 @@ public class LoginPage extends PageBase {
 
 
     public static void LoginPage(){
-       getDriver();
        title = "Rubber Ducks | My Store";
     }
     //метод
     public void attemptLogin(String email, String password){
-        getDriver().findElement(emailInput).sendKeys(email);
-        getDriver().findElement(passwordInput).sendKeys(password);
-        getDriver().findElement(rememberMe).click();
-        getDriver().findElement(loginButton).click();
+        $(emailInput).sendKeys(email);
+        $(passwordInput).sendKeys(password);
+        $(rememberMe).click();
+        $(loginButton).click();
     }
     public void logWithoutRememberMe(String email, String password){
-        getDriver().findElement(emailInput).sendKeys(email);
-        getDriver().findElement(passwordInput).sendKeys(password);
-        getDriver().findElement(loginButton).click();
+        $(emailInput).sendKeys(email);
+        $(passwordInput).sendKeys(password);
+        $(loginButton).click();
     }
     public void rememberPassword(String email){
-        getDriver().findElement(emailInput).sendKeys(email);
-        getDriver().findElement(lostPasswordButton).click();
+        $(emailInput).sendKeys(email);
+        $(lostPasswordButton).click();
     }
     //метод, который отлавливает errorMessage
     public String getErrorMessage(){
-        WebDriverWait wait = new WebDriverWait(getDriver(),5);
-        String invalMess = wait.until(ExpectedConditions.presenceOfElementLocated(errorMessage)).getText();
-        return invalMess;
+        $(errorMessage).should(Condition.appear);
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        return $(errorMessage).getText();
     }
     public String getValidLoginMess(){
-        WebDriverWait wait = new WebDriverWait(getDriver(), 5);
-        String valMess = wait.until(ExpectedConditions.presenceOfElementLocated(validMessage)).getText();
-        return valMess;
+        $(validMessage).should(Condition.appear);
+        return $(validMessage).getText();
     }
     public String getLogoutText(){
-        String logoutElem = getDriver().findElement(logout).getText();
+        String logoutElem = $(logout).getText();
         return logoutElem;
     }
     public String rememberPasswordText(){
-        WebDriverWait wait = new WebDriverWait(getDriver(), 5);
-        String rememberMess = wait.until(ExpectedConditions.presenceOfElementLocated(validMessageForRememberPass)).getText();
-        return rememberMess;
+        $(validMessageForRememberPass).should(Condition.appear);
+        return $(validMessageForRememberPass).getText();
     }
-}
+    }
+
